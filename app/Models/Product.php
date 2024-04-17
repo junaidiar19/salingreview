@@ -18,4 +18,17 @@ class Product extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+    /**
+     * Scope a query to only include Filter
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFilter($query, $params)
+    {
+        $query->when($params['search'] ?? null, function ($query, $search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        });
+    }
 }

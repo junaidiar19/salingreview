@@ -48,7 +48,7 @@
                             </div>
                             <div>
                                 <div class="d-grid">
-                                    <x-button.submit class="btn-primary shadow">
+                                    <x-button.submit>
                                         Login
                                     </x-button.submit>
                                 </div>

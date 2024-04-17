@@ -20,9 +20,9 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link " href="./pages/layout.html">
-                    <i data-feather="box" class="nav-icon icon-xs me-2">
-                    </i>
+                <a class="nav-link {{ request()->routeIs('admin.products.*') ? 'active' : '' }}"
+                    href="{{ route('admin.products.index') }}">
+                    <i data-feather="box" class="nav-icon icon-xs me-2"></i>
                     Produk
                 </a>
             </li>
