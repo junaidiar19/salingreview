@@ -7,3 +7,6 @@
 
 {{-- Vite --}}
 @vite(['resources/css/admin.css'])
+
+{{-- Livewire --}}
+@livewireStyles

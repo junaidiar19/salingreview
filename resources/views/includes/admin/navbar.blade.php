@@ -114,9 +114,9 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="./index.html">
+                        <a class="dropdown-item" href="{{ route('admin.login') }}">
                             <i class="me-2 icon-xxs dropdown-item-icon" data-feather="power"></i>
-                            Sign Out
+                            Logout
                         </a>
                     </li>
                 </ul>
