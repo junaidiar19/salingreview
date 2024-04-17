@@ -6,11 +6,16 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "bensampo/laravel-enum": "^6.11",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
-        "livewire/livewire": "^3.4"
+        "livewire/livewire": "^3.4",
+        "php-flasher/flasher-notyf-laravel": "^1.15",
+        "spatie/laravel-medialibrary": "^11.4",
+        "spatie/laravel-permission": "^6.4"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.13",
         "fakerphp/faker": "^1.23",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.26",

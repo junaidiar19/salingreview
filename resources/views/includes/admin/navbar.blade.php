@@ -114,10 +114,13 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="{{ route('admin.login') }}">
-                            <i class="me-2 icon-xxs dropdown-item-icon" data-feather="power"></i>
-                            Logout
+                        <a class="dropdown-item" href="{{ route('admin.login') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="me-2 icon-xxs dropdown-item-icon" data-feather="power"></i>Logout
                         </a>
+                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </div>

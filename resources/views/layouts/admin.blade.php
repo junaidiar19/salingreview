@@ -6,7 +6,7 @@
     @include('includes.admin.meta')
 
     <!-- Title -->
-    <title>Homepage | Dash Ui - Laravel 11</title>
+    <title>Dashboard | {{ config('app.name') }}</title>
 
     <!-- Styles -->
     @include('includes.admin.styles')

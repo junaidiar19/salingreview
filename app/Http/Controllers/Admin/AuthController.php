@@ -14,11 +14,32 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-        return to_route('admin.dashboard');
+        $credentials = $request->only('email', 'password');
+
+        if (auth()->attempt($credentials)) {
+            $request->session()->regenerate();
+
+            notyf()->addSuccess('Welcome back, ' . auth()->user()->name . '!');
+            return redirect()->intended(route('admin.dashboard'));
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->withInput();
     }
 
     public function logout()
     {
+        auth()->logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        notyf()->addSuccess('You have been logged out.');
+        return to_route('admin.login');
     }
 }

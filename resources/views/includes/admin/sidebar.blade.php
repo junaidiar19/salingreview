@@ -8,17 +8,27 @@
         <!-- Navbar nav -->
         <ul class="navbar-nav flex-column" id="sideNavbar">
             <li class="nav-item">
-                <a class="nav-link has-arrow  active" href="{{ route('admin.dashboard') }}">
+                <a class="nav-link has-arrow {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"
+                    href="{{ route('admin.dashboard') }}">
                     <i data-feather="home" class="nav-icon icon-xs me-2"></i> Dashboard
                 </a>
             </li>
-            <!-- Nav item -->
+
+            <!-- MASTER DATA -->
             <li class="nav-item">
-                <div class="navbar-heading">Layouts & Pages</div>
+                <div class="navbar-heading">Master</div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="./pages/layout.html">
+                    <i data-feather="box" class="nav-icon icon-xs me-2">
+                    </i>
+                    Produk
+                </a>
             </li>
 
             <!-- Nav item -->
-            <li class="nav-item">
+            <li class="nav-item d-none">
                 <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse"
                     data-bs-target="#navPages" aria-expanded="false" aria-controls="navPages">
                     <i data-feather="layers" class="nav-icon icon-xs me-2">
@@ -33,7 +43,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link has-arrow   " href="./pages/settings.html">
+                            <a class="nav-link has-arrow" href="./pages/settings.html">
                                 Settings
                             </a>
                         </li>
@@ -54,13 +64,6 @@
                         </li>
                     </ul>
                 </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="./pages/layout.html">
-                    <i data-feather="sidebar" class="nav-icon icon-xs me-2">
-                    </i>
-                    Layouts
-                </a>
             </li>
         </ul>
     </div>

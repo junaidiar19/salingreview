@@ -6,7 +6,7 @@
     @include('includes.admin.meta')
 
     <!-- Title -->
-    <title>Login | Dash Ui - Laravel 11</title>
+    <title>Login | {{ config('app.name') }}</title>
 
     <!-- Styles -->
     @include('includes.admin.styles')
@@ -27,17 +27,16 @@
                             <p class="mb-5">Please enter your user information.</p>
                         </div>
 
-                        <form action="{{ route('admin.authenticate') }}" method="POST">
-                            @csrf
+                        <x-form :action="route('admin.authenticate')">
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" id="email" class="form-control" name="email"
-                                    placeholder="Email address here" required="">
+                                <x-form.input-label :required="true">Email</x-form.input-label>
+                                <x-form.input type="email" name="email" :value="old('email')"
+                                    placeholder="Email address here" />
+                                <x-form.input-error name="email" />
                             </div>
                             <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" id="password" class="form-control" name="password"
-                                    placeholder="**************" required="">
+                                <x-form.input-label :required="true">Password</x-form.input-label>
+                                <x-form.input-password />
                             </div>
                             <div class="d-lg-flex justify-content-between align-items-center mb-4">
                                 <div class="form-check custom-checkbox">
@@ -49,9 +48,9 @@
                             </div>
                             <div>
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary shadow">
+                                    <x-button.submit class="btn-primary shadow">
                                         Login
-                                    </button>
+                                    </x-button.submit>
                                 </div>
                                 <div class="d-md-flex justify-content-center mt-4">
                                     <div>
@@ -61,7 +60,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </x-form>
 
                     </div>
                 </div>

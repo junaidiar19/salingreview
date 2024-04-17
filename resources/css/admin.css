@@ -1,10 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+/* Global */
 body {
     font-family: 'Roboto', sans-serif;
+    background-color: #f1f4f6;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }
 
 /* Text */
 .form-label {
     font-weight: 500;
+}
+
+
+/* Card */
+.card {
+    border-radius: 10px;
+    box-shadow: none;
 }
