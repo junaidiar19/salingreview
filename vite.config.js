@@ -10,6 +10,10 @@ export default defineConfig({
                 "resources/css/admin.css",
                 "resources/js/plugins/notyf.js",
                 "resources/js/plugins/sweetalert2.js",
+
+                // home page scss
+                "resources/scss/home/style.scss",
+                "resources/js/home/script.js",
             ],
             refresh: true,
         }),
