@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderControler;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -25,5 +26,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Users
     Route::resource('users', UserController::class);
+
+    // Orders
+    Route::resource('orders', OrderControler::class);
   });
 });

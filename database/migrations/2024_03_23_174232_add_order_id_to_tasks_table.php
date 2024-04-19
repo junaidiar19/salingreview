@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('tasks', function (Blueprint $table) {
             if (!Schema::hasColumn('tasks', 'order_id')) {
-                $table->foreignId('order_id')->nullable()->after('status')->constrained();
+                $table->foreignId('order_id')->nullable()->after('product_id')->constrained();
             }
         });
     }
@@ -24,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('tasks', function (Blueprint $table) {
-            //
+            
         });
     }
 };

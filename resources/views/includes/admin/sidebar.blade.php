@@ -46,7 +46,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}" href="{{ route('admin.orders.index') }}">
                     <i data-feather="shopping-cart" class="nav-icon icon-xs me-2"></i>
                     Semua Order
                 </a>
