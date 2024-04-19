@@ -15,15 +15,47 @@
             </li>
 
             <!-- MASTER DATA -->
+            @canany(['show products'])
+                <li class="nav-item">
+                    <div class="navbar-heading">Master</div>
+                </li>
+            @endcanany
+
+            @can('show products')
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.products.*') ? 'active' : '' }}"
+                        href="{{ route('admin.products.index') }}">
+                        <i data-feather="box" class="nav-icon icon-xs me-2"></i>
+                        Produk
+                    </a>
+                </li>
+            @endcan
+
+            @can('show users')
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}"
+                        href="{{ route('admin.users.index') }}">
+                        <i data-feather="user" class="nav-icon icon-xs me-2"></i>
+                        Pengguna
+                    </a>
+                </li>
+            @endcan
+
             <li class="nav-item">
-                <div class="navbar-heading">Master</div>
+                <div class="navbar-heading">Transaction</div>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('admin.products.*') ? 'active' : '' }}"
-                    href="{{ route('admin.products.index') }}">
-                    <i data-feather="box" class="nav-icon icon-xs me-2"></i>
-                    Produk
+                <a class="nav-link" href="#">
+                    <i data-feather="shopping-cart" class="nav-icon icon-xs me-2"></i>
+                    Semua Order
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i data-feather="clock" class="nav-icon icon-xs me-2"></i>
+                    Menunggu Konfirmasi
                 </a>
             </li>
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Prefix Admin
@@ -21,5 +22,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Product
     Route::resource('products', ProductController::class);
+
+    // Users
+    Route::resource('users', UserController::class);
   });
 });
