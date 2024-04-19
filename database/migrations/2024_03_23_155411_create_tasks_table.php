@@ -21,14 +21,14 @@ return new class extends Migration
             $table->uuid()->unique();
             $table->string('code')->unique();
             $table->string('name');
-            $table->string('start_date');
-            $table->string('end_date');
+            $table->date('start_date');
+            $table->text('criteria')->nullable();
             $table->text('instructions');
             $table->string('task_link')->nullable();
             $table->integer('commission');
             $table->integer('quota');
+            $table->integer('daily_quota');
             $table->boolean('is_published')->default(false);
-            $table->string('status', 20)->default(TaskStatusEnum::PENDING);
             $table->timestamps();
         });
     }
