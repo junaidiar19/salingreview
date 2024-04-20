@@ -43,6 +43,13 @@
                                         class="btn btn-primary btn-sm">
                                         <i class="fas fa-eye me-1"></i> Detail
                                     </button>
+                                    <a 
+                                        href="{{ route('admin.tasks.reviewers.index', $task->id) }}" 
+                                        class="btn btn-info btn-sm" 
+                                        data-bs-toggle="tooltip" 
+                                        data-bs-title="Monitoring Reviwer">
+                                        <i class="fas fa-chart-line"></i>
+                                    </a>
                                 </td>
                                 <td>{{ $task->name }}</td>
                                 <td>{{ $task->product->name }}</td>
