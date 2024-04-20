@@ -38,9 +38,11 @@
                                 <td>
                                     <x-button.delete :url="route('admin.tasks.destroy', $task)" itemName="{{ $task->name }}" />
                                     <x-button.edit :url="route('admin.tasks.edit', $task)" />
-                                    <a href="{{ route('admin.tasks.show', $task) }}" class="btn btn-primary btn-sm">
+                                    <button data-bs-toggle="modal" data-bs-target=".open-modal"
+                                        data-title="Detail Tugas" data-url="{{ route('admin.tasks.show', $task) }}"
+                                        class="btn btn-primary btn-sm">
                                         <i class="fas fa-eye me-1"></i> Detail
-                                    </a>
+                                    </button>
                                 </td>
                                 <td>{{ $task->name }}</td>
                                 <td>{{ $task->product->name }}</td>
@@ -65,4 +67,6 @@
             </div>
         </div>
     </div>
+
+    <x-open-modal size="modal-lg" />
 </x-admin-layout>
