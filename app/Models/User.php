@@ -61,4 +61,18 @@ class User extends Authenticatable
             $model->uuid = (string) \Illuminate\Support\Str::uuid();
         });
     }
+
+    /**
+     * Scope query to filter data user
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFilter($query, $params)
+    {
+        $query->when($params['search'] ?? null, function ($query, $search) {
+            $query->where('name', 'like', '%' . $search . '%')
+                ->orWhere('email', 'like', '%' . $search . '%');
+        });
+    }
 }
