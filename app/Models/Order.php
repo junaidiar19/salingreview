@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\OrderStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -52,8 +53,51 @@ class Order extends Model implements HasMedia
         return $this->hasMany(OrderDetail::class, 'order_id');
     }
 
+    public function detail()
+    {
+        return $this->hasOne(OrderDetail::class, 'order_id');
+    }
+
     public function referral()
     {
         return $this->hasOne(OrderReferral::class, 'order_id');
+    }
+
+    // Attribute
+    public function getProofUrlAttribute()
+    {
+        return $this->getFirstMediaUrl('proof');
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        if ($this->status == OrderStatusEnum::PENDING) {
+            return 'Pending';
+        }elseif ($this->status == OrderStatusEnum::WAITING_CONFIRMATION) {
+            return 'Waiting Confirmation';
+        }elseif ($this->status == OrderStatusEnum::SUCCESS) {
+            return 'Success';
+        }elseif ($this->status == OrderStatusEnum::EXPIRED) {
+            return 'Expired';
+        }elseif ($this->status == OrderStatusEnum::FAILED) {
+            return 'Failed';
+        }elseif ($this->status == OrderStatusEnum::CANCELLED) {
+            return 'Cancelled';
+        }
+    }
+
+    // scopes
+
+    /**
+     * Scope a query to filter orders.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFilter($query, $params)
+    {
+        $query->when($params['search'] ?? null, function ($query, $search) {
+            $query->where('code', 'like', '%' . $search . '%');
+        });
     }
 }

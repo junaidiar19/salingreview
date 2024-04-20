@@ -23,6 +23,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Product
     Route::resource('products', ProductController::class);
+    Route::get('product/get-data', [ProductController::class, 'getProduct'])->name('product.get-data');
 
     // Users
     Route::resource('users', UserController::class);

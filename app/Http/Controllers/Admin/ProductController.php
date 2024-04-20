@@ -90,4 +90,14 @@ class ProductController extends Controller
             throw $th;
         }
     }
+
+    /**
+     * Get product data
+     * @param Request $request (product_id)
+     * @return product
+     */
+    public function getProduct(Request $request){
+        $product = Product::findOrFail($request->product_id);
+        return response()->json($product);
+    }
 }
