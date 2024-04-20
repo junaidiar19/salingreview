@@ -14,6 +14,9 @@ export default defineConfig({
                 // home page scss
                 "resources/scss/home/style.scss",
                 "resources/js/home/script.js",
+
+                // admin scss
+                "resources/scss/admin/theme.scss",
             ],
             refresh: true,
         }),
