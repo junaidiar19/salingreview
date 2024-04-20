@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\OrderStatusEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
@@ -98,8 +99,13 @@ class OrderControler extends Controller
 
             DB::commit();
 
-            notyf()->addSuccess('Order created successfully.');
-            return back();
+            if ($request->status == OrderStatusEnum::SUCCESS) {
+                notyf()->addSuccess('Order berhasil dibuat. Silakan buat tugas untuk order ini');
+                return redirect()->route('admin.tasks.create', ['order_code' => $order->code]);
+            } else {
+                notyf()->addSuccess('Order berhasil dibuat.');
+                return back();
+            }
         } catch (\Exception $e) {
             DB::rollBack();
 
@@ -214,5 +220,28 @@ class OrderControler extends Controller
                 return back();
             }
         }
+    }
+
+    public function getOrderForSelect()
+    {
+        $params = request()->query();
+        $orders = Order::filter($params)->paginate(10);
+
+        $response = [];
+        foreach ($orders as $order) {
+            $response[] = [
+                'id' => $order->code,
+                'text' => "[$order->code] " . $order->customer_raw['name'],
+            ];
+        }
+
+        $data = [
+            'results' => $response,
+            'pagination' => [
+                'more' => $orders->hasMorePages(),
+            ],
+        ];
+
+        return response()->json($data);
     }
 }

@@ -26,6 +26,11 @@ class Task extends Model
         'is_published' => 'boolean',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
     protected static function booted()
     {
         static::creating(function ($task) {

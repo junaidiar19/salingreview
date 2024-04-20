@@ -4,7 +4,6 @@
         <h4 class="mb-0">Order</h4>
         <x-button.create :url="route('admin.orders.create')" text="Tambah Order" />
     </x-between>
-
     <div class="card">
         <div class="card-body">
             <form>
@@ -22,7 +21,7 @@
                     <thead>
                         <tr>
                             <th width="10">#</th>
-                            <th>Kode</th>
+                            <th>ID Transaksi</th>
                             <th>Pemesan</th>
                             <th>Rincian</th>
                             <th>Total</th>
@@ -33,7 +32,7 @@
                     <tbody>
                         @forelse ($orders as $key => $order)
                             <tr>
-                                <td>{{ $orders->firstItem() + $key }}</td>
+                                <td>{{ increment($orders, $loop) }}</td>
                                 <td>{{ $order->code }}</td>
                                 <td>{{ $order->user->name }}</td>
                                 <td>
@@ -56,6 +55,10 @@
                                 </td>
                                 <td>
                                     <x-button.delete :url="route('admin.orders.destroy', $order)" text="Hapus" itemName="{{ $order->name }}" />
+                                    <a href="{{ route('admin.tasks.create', ['order_code' => $order->code]) }}"
+                                        class="btn btn-primary btn-sm">
+                                        <i class="fas fa-clipboard-check me-1"></i> Buat Tugas
+                                    </a>
                                 </td>
                             </tr>
                         @empty

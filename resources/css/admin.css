@@ -171,3 +171,8 @@ nav ul.pagination {
 .table.table-rounded tr:last-child td:last-child {
     border-bottom-right-radius: 0.4rem !important;
 }
+
+/* Text */
+.text-sm {
+    font-size: small;
+}

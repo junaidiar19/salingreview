@@ -1,6 +1,8 @@
 @include('partials.dropify')
 @include('partials.select2')
 
+<x-error-list />
+
 <div class="row">
     <div class="col-lg-6 mb-3">
         <x-form.input-label :required="true">User (Pelanggan)</x-form.input-label>
@@ -84,27 +86,9 @@
     <x-form.input-error name="notes" />
 </div>
 
-<div class="mb-3">
-    <x-form.input-label :required="true">Status</x-form.input-label>
-    <x-form.radio id="status1" name="status" type="radio" value="pending" :checked="old('status', @$order->status) == 'pending' ? true : false">
-        Pending
-    </x-form.radio>
-    <x-form.radio id="status2" name="status" type="radio" value="waiting_confirmation" :checked="old('status', @$order->status) == 'waiting_confirmation' ? true : false">
-        Waiting Confirmation
-    </x-form.radio>
-    <x-form.radio id="status3" name="status" type="radio" value="success" :checked="old('status', @$order->status) == 'success' ? true : false">
-        Success
-    </x-form.radio>
-    <x-form.radio id="status4" name="status" type="radio" value="failed" :checked="old('status', @$order->status) == 'failed' ? true : false">
-        Failed
-    </x-form.radio>
-    <x-form.radio id="status5" name="status" type="radio" value="cancelled" :checked="old('status', @$order->status) == 'cancelled' ? true : false">
-        Cancelled
-    </x-form.radio>
-    <x-form.input-error name="status" />
-</div>
+<input type="hidden" name="status" value="success">
 
-<x-select.select2-ssr id="select-users" :url="route('admin.users.get-data.select')" />
+<x-scripts.select2-ssr id="select-users" :url="route('admin.users.get-data.select')" />
 @push('scripts')
     <script>
         // get data product if product_id is selected

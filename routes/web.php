@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UploadFileCkeditorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,3 +25,6 @@ Route::get('/contact', function () {
 
 // include roles.admin
 require_once __DIR__ . '/roles/admin.php';
+
+// Upload media for CKEditor
+Route::post('/ckeditor-upload-media', UploadFileCkeditorController::class)->name('ckeditor.upload');

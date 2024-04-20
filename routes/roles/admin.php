@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderControler;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,5 +32,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Orders
     Route::resource('orders', OrderControler::class);
+    Route::get('/order/get-data/select', [OrderControler::class, 'getOrderForSelect'])->name('orders.get-data.select');
+
+    // Tasks
+    Route::resource('tasks', TaskController::class);
   });
 });

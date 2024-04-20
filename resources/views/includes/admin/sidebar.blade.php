@@ -42,11 +42,23 @@
             @endcan
 
             <li class="nav-item">
+                <div class="navbar-heading">Task</div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('admin.tasks.*') ? 'active' : '' }}"
+                    href="{{ route('admin.tasks.index') }}">
+                    <i data-feather="check-square" class="nav-icon icon-xs me-2"></i>
+                    Tugas
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <div class="navbar-heading">Transaction</div>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}" href="{{ route('admin.orders.index') }}">
+                <a class="nav-link {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}"
+                    href="{{ route('admin.orders.index') }}">
                     <i data-feather="shopping-cart" class="nav-icon icon-xs me-2"></i>
                     Semua Order
                 </a>
