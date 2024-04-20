@@ -1,6 +1,6 @@
 <x-admin-layout>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-10">
             <div class="mb-3">
                 <x-button.back :url="route('admin.orders.index')" />
             </div>

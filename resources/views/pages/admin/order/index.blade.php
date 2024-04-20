@@ -23,7 +23,8 @@
                         <tr>
                             <th width="10">#</th>
                             <th>Kode</th>
-                            <th>Produk</th>
+                            <th>Pemesan</th>
+                            <th>Rincian</th>
                             <th>Total</th>
                             <th>Status</th>
                             <th>Aksi</th>
@@ -34,13 +35,15 @@
                             <tr>
                                 <td>{{ $orders->firstItem() + $key }}</td>
                                 <td>{{ $order->code }}</td>
+                                <td>{{ $order->user->name }}</td>
                                 <td>
                                     <ul class="mb-0">
                                         @foreach ($order->details as $detail)
                                             <li>
-                                                {{ $detail->product_name }} 
+                                                {{ $detail->product_name }}
                                                 <br>
-                                                <small>Jumlah : {{ $detail->quantity }} | Harga: {{ rupiahFormat($detail->price) }}</small>
+                                                <small>Jumlah : {{ $detail->quantity }} | Harga:
+                                                    {{ rupiahFormat($detail->price) }}</small>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -52,13 +55,12 @@
                                     </x-badge.order-status>
                                 </td>
                                 <td>
-                                    <x-button.edit :url="route('admin.orders.edit', $order)" text="Edit" />
                                     <x-button.delete :url="route('admin.orders.destroy', $order)" text="Hapus" itemName="{{ $order->name }}" />
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center">-tidak ada data-</td>
+                                <td colspan="7" class="text-center">-tidak ada data-</td>
                             </tr>
                         @endforelse
                     </tbody>

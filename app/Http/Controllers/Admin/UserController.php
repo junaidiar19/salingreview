@@ -64,7 +64,7 @@ class UserController extends Controller
         } catch (\Throwable $th) {
             DB::rollBack();
 
-            if(app()->isLocal()){
+            if (app()->isLocal()) {
                 throw $th;
             } else {
                 notyf()->addError('Failed to create user.');
@@ -109,7 +109,7 @@ class UserController extends Controller
             'email' => $request->email,
         ];
 
-        if($request->password){
+        if ($request->password) {
             $data['password'] = $request->password;
         }
 
@@ -131,7 +131,7 @@ class UserController extends Controller
         } catch (\Throwable $th) {
             DB::rollBack();
 
-            if(app() && app()->isLocal()){
+            if (app() && app()->isLocal()) {
                 throw $th;
             } else {
                 notyf()->addError('Failed to update user.');
@@ -160,12 +160,35 @@ class UserController extends Controller
         } catch (\Throwable $th) {
             DB::rollBack();
 
-            if(app()->isLocal()){
+            if (app()->isLocal()) {
                 throw $th;
             } else {
                 notyf()->addError('Failed to delete user.');
                 return back();
             }
         }
+    }
+
+    public function getUserForSelect()
+    {
+        $params = request()->query();
+        $users = User::filter($params)->paginate(10);
+
+        $response = [];
+        foreach ($users as $user) {
+            $response[] = [
+                'id' => $user->id,
+                'text' => "[$user->email] " . $user->name,
+            ];
+        }
+
+        $data = [
+            'results' => $response,
+            'pagination' => [
+                'more' => $users->hasMorePages(),
+            ],
+        ];
+
+        return response()->json($data);
     }
 }

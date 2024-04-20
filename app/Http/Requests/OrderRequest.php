@@ -25,6 +25,8 @@ class OrderRequest extends FormRequest
             'user_id' => 'required|exists:users,id',
             'product_id' => 'required|exists:products,id',
             'quantity' => 'required|integer',
+            'discount_name' => 'nullable|string',
+            'discount_value' => 'nullable|numeric',
             'total' => 'required',
             'order_date' => 'required|date',
             'proof' => 'required|image|mimes:jpg,jpeg,png,pdf|max:2000',

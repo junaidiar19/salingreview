@@ -58,11 +58,6 @@ class Order extends Model implements HasMedia
         return $this->hasOne(OrderDetail::class, 'order_id');
     }
 
-    public function referral()
-    {
-        return $this->hasOne(OrderReferral::class, 'order_id');
-    }
-
     // Attribute
     public function getProofUrlAttribute()
     {
@@ -73,15 +68,15 @@ class Order extends Model implements HasMedia
     {
         if ($this->status == OrderStatusEnum::PENDING) {
             return 'Pending';
-        }elseif ($this->status == OrderStatusEnum::WAITING_CONFIRMATION) {
+        } elseif ($this->status == OrderStatusEnum::WAITING_CONFIRMATION) {
             return 'Waiting Confirmation';
-        }elseif ($this->status == OrderStatusEnum::SUCCESS) {
+        } elseif ($this->status == OrderStatusEnum::SUCCESS) {
             return 'Success';
-        }elseif ($this->status == OrderStatusEnum::EXPIRED) {
+        } elseif ($this->status == OrderStatusEnum::EXPIRED) {
             return 'Expired';
-        }elseif ($this->status == OrderStatusEnum::FAILED) {
+        } elseif ($this->status == OrderStatusEnum::FAILED) {
             return 'Failed';
-        }elseif ($this->status == OrderStatusEnum::CANCELLED) {
+        } elseif ($this->status == OrderStatusEnum::CANCELLED) {
             return 'Cancelled';
         }
     }
@@ -97,7 +92,11 @@ class Order extends Model implements HasMedia
     public function scopeFilter($query, $params)
     {
         $query->when($params['search'] ?? null, function ($query, $search) {
-            $query->where('code', 'like', '%' . $search . '%');
+            // search by code & user.name
+            $query->where('code', 'like', '%' . $search . '%')
+                ->orWhereHas('user', function ($query) use ($search) {
+                    $query->where('name', 'like', '%' . $search . '%');
+                });
         });
     }
 }

@@ -18,7 +18,7 @@ class OrderControler extends Controller
     public function index()
     {
         $params = request()->query();
-        $orders = Order::with(['details'])->filter($params)->paginate($params['row'] ?? 10);
+        $orders = Order::with(['user', 'details'])->filter($params)->paginate($params['row'] ?? 10);
 
         $data = [
             'orders' => $orders,
@@ -53,7 +53,6 @@ class OrderControler extends Controller
 
             $order = Order::create([
                 'user_id' => $request->user_id,
-                'quantity' => $request->quantity,
                 'total' => $request->total,
                 'status' => $request->status,
                 'order_date' => $request->order_date,
@@ -71,15 +70,31 @@ class OrderControler extends Controller
             // get product
             $product = Product::findOrFail($request->product_id);
 
-            // create order detail
-            $order->details()->create([
+            $details = [];
+
+            $details[] = [
                 'product_type' => get_class($product),
                 'product_id' => $product->id,
                 'product_name' => $product->name,
                 'quantity' => $request->quantity,
                 'price' => $product->price,
                 'total' => $request->total,
-            ]);
+            ];
+
+            // if has discount_value
+            if ($request->discount_value) {
+                $details[] = [
+                    'product_type' => 'discount',
+                    'product_id' => 1,
+                    'product_name' => $request->discount_name,
+                    'quantity' => 1,
+                    'price' => $request->discount_value,
+                    'total' => $request->discount_value,
+                ];
+            }
+
+            // create order detail
+            $order->details()->createMany($details);
 
             DB::commit();
 
@@ -90,7 +105,7 @@ class OrderControler extends Controller
 
             if (app()->isLocal()) {
                 throw $e;
-            }else{
+            } else {
                 notyf()->addError('Something went wrong.');
                 return back();
             }
@@ -174,7 +189,7 @@ class OrderControler extends Controller
 
             if (app()->isLocal()) {
                 throw $e;
-            }else{
+            } else {
                 notyf()->addError('Something went wrong.');
                 return back();
             }
@@ -194,7 +209,7 @@ class OrderControler extends Controller
         } catch (\Throwable $th) {
             if (app()->isLocal()) {
                 throw $th;
-            }else{
+            } else {
                 notyf()->addError('Something went wrong.');
                 return back();
             }

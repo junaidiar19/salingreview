@@ -12,6 +12,6 @@
 
 <div class="mb-3">
     <x-form.input-label :required="@$user ? false : true">Password</x-form.input-label>
-    <x-form.input type="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
+    <x-form.input-password />
     <x-form.input-error name="password" />
 </div>
