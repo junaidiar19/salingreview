@@ -304,3 +304,32 @@
     }
   }
 }
+
+// Navbar Account
+// 
+// style for sidebar account
+.nav-account{
+  .nav-item{
+    margin: .125rem 0;
+
+    .nav-link.active {
+      background-color: $primary-color !important;
+      color: #fff !important;
+    }
+
+    .nav-link{
+      background-color: transparent;
+      border-radius: .5rem;
+      color: $gray-500;
+      font-weight: 500;
+      line-height: 1;
+      padding: 12px 16px;
+      transition: .2s ease-in-out;
+    }
+
+    .nav-link:hover{
+      background-color: $gray-100;
+      color: $gray-700;
+    }
+  }
+}
