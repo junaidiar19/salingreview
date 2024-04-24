@@ -1,0 +1,19 @@
+// icons
+.icons{
+    .icon-box {
+      height: 85px;
+      flex: 0 0 auto;
+      width: 85px;
+      line-height: 85px;
+      text-align: center;
+      border-radius: 8px;
+      color: $secondary-color;
+      background-color: rgba($secondary-color, .1);
+    }
+    &:nth-child(even) {
+      .icon-box {
+        color: $primary-color;
+        background-color: rgba($primary-color, .1);
+      }
+    }
+  }

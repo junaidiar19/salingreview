@@ -12,10 +12,22 @@
     
     @include('includes.home.navbar')
 
-    {{ $slot }}
+    <section class="section-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4">
+                    @include('includes.user.sidebar')
+                </div>
+                <div class="col-lg-9 col-md-8">
+                    {{ $slot }}
+                </div>
+            </div>
+        </div>
+    </section>
 
     @include('includes.home.footer')
 
     @include('includes.home.scripts')
+    @stack('scripts')
 </body>
 </html>

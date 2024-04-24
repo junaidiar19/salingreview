@@ -10,7 +10,7 @@
 </head>
 <body>
     
-    <section class="banner bg-tertiary position-relative overflow-hidden vh-100">
+    <section class="banner bg-tertiary position-relative overflow-hidden min-vh-100">
         <div class="container h-100">
             {{ $slot }}
         </div>
