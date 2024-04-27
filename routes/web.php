@@ -23,33 +23,15 @@ Route::get('/contact', function () {
     return view('pages.home.contact');
 })->name('contact');
 
-Route::get('/login', function () {
-    return view('pages.user.auth.login');
-})->name('login');
-
-Route::get('/register', function () {
-    return view('pages.user.auth.register');
-})->name('register');
-
 // include roles.admin
 require_once __DIR__ . '/roles/admin.php';
 
 // include roles.user
-Route::get('/user/dasboard', function () {
-    return view('pages.user.dashboard.index');
-})->name('user.dashboard');
-
-Route::get('/user/tasks', function () {
-    return view('pages.user.tasks.index');
-})->name('user.tasks.index');
-
-Route::get('/user/tasks/detail', function () {
-    return view('pages.user.tasks.show');
-})->name('user.tasks.show');
-
-Route::get('/user/profile', function () {
-    return view('pages.user.profile');
-})->name('user.profile');
+require_once __DIR__ . '/roles/user.php';
 
 // Upload media for CKEditor
 Route::post('/ckeditor-upload-media', UploadFileCkeditorController::class)->name('ckeditor.upload');
+
+Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
