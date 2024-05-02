@@ -9,4 +9,10 @@
 <link rel="stylesheet" href="{{ asset('assets/home/plugins/font-awesome/brands.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/home/plugins/font-awesome/solid.css') }}">
 
+{{-- bootstrap icons --}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+{{-- box icons --}}
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 @vite(['resources/scss/home/style.scss', 'resources/js/home/script.js'])

@@ -49,6 +49,8 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
+        $task->load(['product', 'user', 'order']);
+
         return view('pages.admin.tasks.show', compact('task'));
     }
 
@@ -68,6 +70,7 @@ class TaskController extends Controller
      */
     public function update(TaskRequest $request, Task $task)
     {
+        return $request->validated();
         $data = $request->validated();
 
         $task->update($data);

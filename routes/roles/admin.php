@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderControler;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TaskController;
+use App\Http\Controllers\Admin\TaskReviewerController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,5 +37,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Tasks
     Route::resource('tasks', TaskController::class);
+    Route::get('/tasks/{taskId}/reviewers', [TaskReviewerController::class, 'index'])->name('tasks.reviewers.index');
   });
 });

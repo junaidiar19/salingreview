@@ -1,0 +1,18 @@
+.custom-search {
+    position: relative;
+}
+
+.custom-search i {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    font-size: 13px;
+    left: 12px;
+    align-items: center;
+    display: flex;
+    color: #b9bdc3;
+}
+
+.custom-search input {
+    padding-left: 2.2rem !important;
+}

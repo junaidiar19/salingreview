@@ -26,5 +26,12 @@ Route::get('/contact', function () {
 // include roles.admin
 require_once __DIR__ . '/roles/admin.php';
 
+// include roles.user
+require_once __DIR__ . '/roles/user.php';
+
 // Upload media for CKEditor
 Route::post('/ckeditor-upload-media', UploadFileCkeditorController::class)->name('ckeditor.upload');
+
+Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
